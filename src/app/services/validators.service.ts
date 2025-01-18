@@ -35,3 +35,18 @@ function isInvalidDocument(document: string): boolean {
 
   return firstDigit !== parseInt(document[9]) || secondDigit !== parseInt(document[10]);
 }
+
+export function phoneValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+
+    const phoneRegex = /^\d{11}$/;
+
+    if (!value) {
+      return null;
+    }
+
+    const isValid = phoneRegex.test(value);
+    return isValid ? null : { invalidPhone: { value } };
+  };
+}

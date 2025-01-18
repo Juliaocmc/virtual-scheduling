@@ -1,3 +1,4 @@
+
 <mat-card class="form-card">
     <mat-card-title>Cadastro</mat-card-title>
     <mat-card-content>
@@ -26,13 +27,12 @@
                 <mat-error *ngIf="document?.hasError('invalidDocument')">Digite um Documento válido.</mat-error>
              </mat-form-field>
 
-            <!-- Telefone -->
+            <!-- Celular -->
             <mat-form-field appearance="fill" class="form-field">
-                <mat-label>Telefone</mat-label>
-                <input matInput formControlName="phone" placeholder="Digite seu telefone" required />
-                <mat-error>
-                    Telefone é obrigatório
-                </mat-error>
+                <mat-label>Celular</mat-label>
+                <input matInput mask="(00)00000-0000" formControlName="phone" placeholder="Digite seu numero de celular" required />
+                <mat-error *ngIf="phone?.hasError('required')">O número de celular é obrigatório.</mat-error>
+                <mat-error *ngIf="phone?.hasError('invalidPhone')">Digite um número de celular válido.</mat-error>
             </mat-form-field>
 
             <!-- Botão de Enviar -->

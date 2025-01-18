@@ -1,0 +1,11 @@
+body {
+    background-color: #1670a5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%; 
+    background-color: #f0f0f0;
+}

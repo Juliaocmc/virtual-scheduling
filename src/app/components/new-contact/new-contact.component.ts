@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { documentValidator, twoWordsValidator } from '../../services/validators.service';
-import { provideNgxMask } from 'ngx-mask';
+import { documentValidator, phoneValidator, twoWordsValidator } from '../../services/validators.service';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-new-contact',
@@ -20,6 +20,7 @@ import { provideNgxMask } from 'ngx-mask';
     MatInputModule,
     CommonModule,
     ReactiveFormsModule,
+    NgxMaskDirective
   ],
   providers: [provideNgxMask()],
   templateUrl: './new-contact.component.html',
@@ -34,7 +35,7 @@ export class NewContactComponent {
       fullName: ['', [Validators.required, twoWordsValidator()]], 
       email: ['', [Validators.required, Validators.email]], 
       document: ['', [Validators.required, documentValidator(), Validators.maxLength(11)]], 
-      phone: ['', [Validators.required]],
+      phone: ['', [Validators.required, phoneValidator()]],
     });
   }
 
@@ -54,6 +55,10 @@ export class NewContactComponent {
 
   get document() {
     return this.form.get('document');
+  }
+
+  get phone() {
+    return this.form.get('phone');
   }
 
 }

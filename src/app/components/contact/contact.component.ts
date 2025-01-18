@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
+import { SchedulerModalComponent } from '../scheduler-modal/scheduler-modal.component';
 
 export interface UserData {
   name: string;
@@ -102,8 +103,17 @@ export class ContactComponent implements OnInit {
       panelClass: 'custom-modal',
     })
   }
+
   openDeletetModal() {
     this.dialog.open(DeleteModalComponent)
+  }
+
+  openSchedulerModal() {
+    this.dialog.open(SchedulerModalComponent, {
+      height: '74%',
+      width: '45%',
+      panelClass: 'custom-modal',
+    })
   }
 
 }

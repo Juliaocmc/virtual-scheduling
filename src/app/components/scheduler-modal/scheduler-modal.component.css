@@ -1,0 +1,69 @@
+.form-card {
+    width: 100%;
+    height: 100%;
+    background-color: #5ebb7c;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  mat-card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1670a5;
+  }
+  
+  
+  mat-form-field {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  
+  mat-label {
+    color: #1670a5;
+  }
+  
+  input {
+    align-items: center;
+    background-color: #b5d24000;
+    color: #000000;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  
+  mat-error {
+    color: #1670a5; 
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  
+  
+  button {
+    background-color: #b5d240;
+    color: #1670a5;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+  background-color: #1c96a3;
+  color: #1670a5;
+  }
+  
+  
+  ::ng-deep .custom-modal {
+    background-color: #ffffff; /* Cor de fundo */
+    color: #000;              /* Cor do texto */
+    border-radius: 10px;      /* Bordas arredondadas */
+    padding: 20px;            /* Espaçamento interno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+  }
+  

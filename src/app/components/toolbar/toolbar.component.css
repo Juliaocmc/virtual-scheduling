@@ -1,8 +1,32 @@
+.custom-toolbar {
+  background-color: #5ebb7c;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.toolbar-title {
+  font-size: 30px;
+  font-weight: bolder;
+  color: #1670a5;
+}
+
 .spacer {
-    flex: 1 1 auto;
-  }
+  flex-grow: 1;
+}
+
+.toolbar-button {
+  margin: 0 20px;
   
-  mat-toolbar {
-    display: flex;
-    justify-content: space-between;
-  }
+  font-size: 16px;
+  font-weight: 500;
+}
+.mat-mdc-unelevated-button:not(:disabled) {
+  background-color:  #b5d240;
+  color: #1670a5;
+}
+
+.toolbar-button:hover {
+  background-color: #1c96a3;
+  color: #1670a5;
+}

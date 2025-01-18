@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { FormsService } from '../../services/forms.service';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-home',

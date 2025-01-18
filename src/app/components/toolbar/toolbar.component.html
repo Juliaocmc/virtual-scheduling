@@ -1,9 +1,9 @@
-<mat-toolbar color="primary">
-  <span>Agenda virtual</span>
+<mat-toolbar class="custom-toolbar">
+  <span  class="toolbar-title">Agenda virtual</span>
   <span class="spacer"></span>
-  <button mat-button routerLink="/">Agenda</button>
-  <button mat-button routerLink="/contact">Contatos</button>
-  <button mat-button routerLink="/new-contact">Cadastrar</button>
+  <button mat-flat-button class="toolbar-button" routerLink="/">Agenda</button>
+  <button mat-flat-button class="toolbar-button" routerLink="/contact">Contatos</button>
+  <button mat-flat-button class="toolbar-button" routerLink="/new-contact">Cadastrar</button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

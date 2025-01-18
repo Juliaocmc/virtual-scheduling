@@ -1,7 +1,7 @@
 .form-card {
     margin: 20px;
     padding: 20px;
-    background-color: #b5d240;
+    background-color: #1670a5;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -16,14 +16,48 @@ th {
     color: #1670a5;
     font-size: larger;
     font-weight: bolder;
-
+    text-align: center;
 }
 
 td {
-    color: #1670a5;;
+    color: #1670a5;
+    ;
     font-size: medium;
     font-weight: bolder;
+    text-align: center;
 }
+
+/* Adiciona espaço entre os botões */
+.action-cell {
+    justify-content: center;
+    /* Alinha os botões à esquerda */
+    gap: 8px;
+    /* Espaçamento horizontal entre os botões */
+}
+
+/* Define os estilos dos botões */
+.action-button {
+    background-color: #b5d240;
+    /* Cor de fundo sutil */
+    margin: 10px;
+    border: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+    background-color: #b5d240;
+    /* Cor de fundo ao passar o mouse */
+}
+
+/* Define os estilos dos ícones */
+.action-icon {
+    color: #1670a5;
+    /* Define a cor vermelha para os ícones */
+    font-size: 24px;
+    /* Tamanho do ícone */
+}
+
 
 mat-paginator {
     background-color: #5ebb7c;

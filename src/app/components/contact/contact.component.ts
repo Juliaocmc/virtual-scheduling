@@ -76,7 +76,7 @@ const USERS_DATA: UserData[] = [
     MatDialogModule
   ],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrl: './contact.component.css',
 })
 export class ContactComponent implements OnInit {
   constructor(private dialog: MatDialog) {
@@ -99,13 +99,11 @@ export class ContactComponent implements OnInit {
     this.dialog.open(EditModalComponent, {
       height: '74%',
       width: '45%',
+      panelClass: 'custom-modal',
     })
   }
   openDeletetModal() {
-    this.dialog.open(DeleteModalComponent, {
-      height: '74%',
-      width: '45%',
-    })
+    this.dialog.open(DeleteModalComponent)
   }
 
 }

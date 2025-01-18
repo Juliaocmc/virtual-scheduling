@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { documentValidator, phoneValidator, twoWordsValidator } from '../../services/validators.service';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-modal',

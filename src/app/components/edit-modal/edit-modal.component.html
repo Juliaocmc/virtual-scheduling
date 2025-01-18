@@ -1,0 +1,44 @@
+<mat-card class="form-card">
+  <mat-card-title>Cadastro</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Nome Completo -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Nome Completo</mat-label>
+        <input matInput formControlName="fullName" placeholder="Digite seu nome completo" required />
+        <mat-error *ngIf="fullName?.hasError('required')">O nome completo é obrigatório.</mat-error>
+        <mat-error *ngIf="fullName?.hasError('twoWords')">O nome deve conter pelo menos dois nomes.</mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" placeholder="Digite seu e-mail" />
+        <mat-error *ngIf="email?.hasError('required')">O e-mail é obrigatório.</mat-error>
+        <mat-error *ngIf="email?.hasError('email')">Digite um e-mail válido.</mat-error>
+      </mat-form-field>
+
+      <!-- Documento -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Documento</mat-label>
+        <input matInput mask="000.000.000-00" formControlName="document" placeholder="Digite seu Documento" />
+        <mat-error *ngIf="document?.hasError('required')">O Documento é obrigatório.</mat-error>
+        <mat-error *ngIf="document?.hasError('invalidDocument')">Digite um Documento válido.</mat-error>
+      </mat-form-field>
+
+      <!-- Celular -->
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Celular</mat-label>
+        <input matInput mask="(00)00000-0000" formControlName="phone" placeholder="Digite seu numero de celular"
+          required />
+        <mat-error *ngIf="phone?.hasError('required')">O número de celular é obrigatório.</mat-error>
+        <mat-error *ngIf="phone?.hasError('invalidPhone')">Digite um número de celular válido.</mat-error>
+      </mat-form-field>
+
+      <!-- Botão de Enviar -->
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Enviar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

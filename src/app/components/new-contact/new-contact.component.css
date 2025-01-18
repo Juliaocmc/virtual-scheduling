@@ -1,50 +1,48 @@
-/* Ajuste para o card ocupar mais espaço */
 .form-card {
     margin: 2rem auto;
     padding: 2rem;
-    max-width: 800px; /* Define uma largura máxima */
-    width: 90%; /* Ajusta para ocupar mais espaço na tela */
-    background-color: #5ebb7c; /* Cor de fundo do card */
+    max-width: 800px; 
+    width: 90%;
+    background-color: #5ebb7c;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efeito de sombra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-/* Estilização do título */
 mat-card-title {
     font-size: 1.8rem;
     font-weight: bold;
     text-align: center;
     margin-bottom: 1rem;
-    color: #1670a5; /* Cor do título */
+    color: #1670a5;
 }
 
-/* Estilização dos campos de formulário */
+
 mat-form-field {
     display: block;
-    width: 100%; /* Ocupa a largura total */
+    width: 100%;
     margin-bottom: 1.5rem;
 }
 
 mat-label {
-    color: #1670a5; /* Texto do label em branco */
+    color: #1670a5;
 }
 
 input {
     align-items: center;
-    background-color: #b5d24000; /* Campo de input em branco */
-    color: #000000; /* Texto em preto */
+    background-color: #b5d24000;
+    color: #000000;
     padding: 0.5rem;
     border-radius: 4px;
 }
 
-/* Estilização dos erros */
+
 mat-error {
-    color: #1670a5; /* Vermelho para mensagens de erro */
+    color: #1670a5; 
     font-size: 0.8rem;
     font-weight: bold;
 }
 
-/* Botão de enviar */
+
 button {
     background-color: #b5d240;
     color: #1670a5;

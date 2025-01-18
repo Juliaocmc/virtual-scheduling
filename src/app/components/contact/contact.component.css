@@ -1,0 +1,39 @@
+.form-card {
+    margin: 20px;
+    padding: 20px;
+    background-color: #b5d240;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-table {
+    background-color: #5ebb7c;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+th {
+    color: #1670a5;
+    font-size: larger;
+    font-weight: bolder;
+
+}
+
+td {
+    color: #1670a5;;
+    font-size: medium;
+    font-weight: bolder;
+}
+
+mat-paginator {
+    background-color: #5ebb7c;
+    color: #1670a5;
+
+}
+
+/*
+#5ebb7c; verde claro
+#1c96a3; azul claro
+#b5d240; amarelo
+#1670a5; azul escuro
+*/

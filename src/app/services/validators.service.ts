@@ -50,3 +50,13 @@ export function phoneValidator(): ValidatorFn {
     return isValid ? null : { invalidPhone: { value } };
   };
 }
+
+export function startBeforeEndValidator(start: string, end: string): boolean {
+    if (start && end) {
+      if (start >= end) {
+        return  true ;
+      }
+    }
+    return false;
+  };
+

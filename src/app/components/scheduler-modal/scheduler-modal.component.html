@@ -1,43 +1,50 @@
 <mat-card class="form-card">
-    <mat-card-title>Agendamento</mat-card-title>
+    <mat-card-title>Agendamento para {{contact.name }}</mat-card-title>
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <!-- Email -->
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Dia</mat-label>
-          <input matInput formControlName="email" placeholder="Digite seu e-mail" />
-          <mat-error *ngIf="email?.hasError('required')">O e-mail é obrigatório.</mat-error>
-          <mat-error *ngIf="email?.hasError('email')">Digite um e-mail válido.</mat-error>
+          <input 
+          matInput 
+          formControlName="date" 
+          [matDatepicker]="picker"
+          readonly
+          (focus)="picker.open()" 
+          >
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="date?.hasError('required')">Selecione uma data.</mat-error>
         </mat-form-field>
   
-        <!-- Nome Completo -->
         <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Horário</mat-label>
-          <input matInput formControlName="fullName" placeholder="Digite seu nome completo" required />
-          <mat-error *ngIf="fullName?.hasError('required')">O nome completo é obrigatório.</mat-error>
-          <mat-error *ngIf="fullName?.hasError('twoWords')">O nome deve conter pelo menos dois nomes.</mat-error>
+          <mat-label>Horário inicial</mat-label>
+          <mat-select name="start" formControlName="start" required>
+            @for (time of times; track time) {
+              <mat-option [value]="time">{{time}}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="start?.hasError('required')">O horário inicial é obrigatório.</mat-error>
         </mat-form-field>
   
   
-  
-        <!-- Documento -->
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Horário final</mat-label>
+          <mat-select formControlName="end"  name="end">
+            @for (time of times; track time) {
+              <mat-option [value]="time">{{time}}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="end?.hasError('required')">O horário final é obrigatório.</mat-error>
+          <mat-error *ngIf="end?.hasError('startBeforeEnd')">O horário de início deve ser anterior ao horário final.</mat-error>
+        </mat-form-field>
+
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Local</mat-label>
-          <input matInput mask="000.000.000-00" formControlName="document" placeholder="Digite seu Documento" />
-          <mat-error *ngIf="document?.hasError('required')">O Documento é obrigatório.</mat-error>
-          <mat-error *ngIf="document?.hasError('invalidDocument')">Digite um Documento válido.</mat-error>
-        </mat-form-field>
-  
-        <!-- Celular -->
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Celular</mat-label>
-          <input matInput mask="(00)00000-0000" formControlName="phone" placeholder="Digite seu numero de celular"
+          <input matInput formControlName="local" placeholder="Digite o local da encontro"
             required />
-          <mat-error *ngIf="phone?.hasError('required')">O número de celular é obrigatório.</mat-error>
-          <mat-error *ngIf="phone?.hasError('invalidPhone')">Digite um número de celular válido.</mat-error>
+          <mat-error *ngIf="local?.hasError('required')">O local é obrigatório.</mat-error>
         </mat-form-field>
   
-        <!-- Botão de Enviar -->
         <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
           Enviar
         </button>

@@ -6,9 +6,8 @@ import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { documentValidator, phoneValidator, twoWordsValidator } from '../../services/validators.service';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-new-contact',
@@ -33,7 +32,7 @@ export class NewContactComponent {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient,  private router: Router) {
+  constructor(private fb: FormBuilder, private service: ContactService,  private router: Router) {
     this.form = this.fb.group({
       fullName: ['', [Validators.required, twoWordsValidator()]],
       email: ['', [Validators.required, Validators.email]],
@@ -45,10 +44,7 @@ export class NewContactComponent {
   onSubmit() {
     if (this.form.valid) {
       const body = this.form.value
-      this.http.post<any>(
-        `https://516c9b31-2604-42fc-b567-63c5a40e439f.mock.pstmn.io/contact`,
-        body
-      )
+      this.service.createContact(body)
       .subscribe({
         next: data => {
           console.log(data.message)

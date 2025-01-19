@@ -1,17 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { documentValidator, phoneValidator, twoWordsValidator } from '../../services/validators.service';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Contact } from '../../models/model';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-edit-modal',
   standalone: true,
-  imports: [   
-     MatCard,
+  imports: [
+    MatCard,
     MatCardTitle,
     MatCardContent,
     MatFormField,
@@ -30,18 +33,30 @@ export class EditModalComponent {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public contact: Contact,
+    private service: ContactService
+  ) {
     this.form = this.fb.group({
-      fullName: ['O nome vem aqui', [Validators.required, twoWordsValidator()]], 
-      email: ['O email', [Validators.required, Validators.email]], 
-      document: ['11111111111', [Validators.required, documentValidator(), Validators.maxLength(11)]], 
-      phone: ['1111111111', [Validators.required, phoneValidator()]],
+      fullName: [this.contact.name, [Validators.required, twoWordsValidator()]],
+      email: [this.contact.email, [Validators.required, Validators.email]],
+      document: [this.contact.document, [Validators.required, documentValidator(), Validators.maxLength(11)]],
+      phone: [this.contact.phone, [Validators.required, phoneValidator()]],
     });
   }
 
   onSubmit(): void {
     if (this.form.valid) {
       console.log('Formulário enviado:', this.form.value);
+      const body = this.form.value
+      console.log("vai editar o ", this.contact.name)
+      this.service.updateContact(this.contact.id, body)
+      .subscribe({
+        next: () =>
+        alert(`O contato foi atualizado com sucesso.`)
+      })
+
     }
   }
 
@@ -61,7 +76,7 @@ export class EditModalComponent {
     return this.form.get('phone');
   }
 
-  toggle () {
+  toggle() {
     this.mostrar = !this.mostrar;
   }
 }

@@ -1,11 +1,10 @@
 <mat-card class="form-card">
     <mat-form-field class="calendar">
         <mat-label>DATA DE AGENDAMENTO</mat-label>
-        <input matInput [matDatepicker]="picker">
+        <input readonly matInput [matDatepicker]="picker" formControlName="date" (dateChange)="onDateChange($event)" >
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-
 
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" class="mat-table">

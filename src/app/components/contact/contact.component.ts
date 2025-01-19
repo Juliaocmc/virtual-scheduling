@@ -12,56 +12,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { SchedulerModalComponent } from '../scheduler-modal/scheduler-modal.component';
-
-export interface UserData {
-  name: string;
-  phone: string;
-  email: string;
-}
-
-const USERS_DATA: UserData[] = [
-  { name: 'John Doe', phone: '123-456-7890', email: 'john@example.com' },
-  { name: 'Jane Smith', phone: '987-654-3210', email: 'jane@example.com' },
-  { name: 'Alice Johnson', phone: '555-555-5555', email: 'alice@example.com' },
-  { name: 'Bob Brown', phone: '444-444-4444', email: 'bob@example.com' },
-  { name: 'Charlie White', phone: '333-333-3333', email: 'charlie@example.com' },
-  // Adicione mais dados conforme necessário  { name: 'John Doe', phone: '123-456-7890', email: 'john@example.com' },
-  { name: 'Jane Smith', phone: '987-654-3210', email: 'jane@example.com' },
-  { name: 'Alice Johnson', phone: '555-555-5555', email: 'alice@example.com' },
-  { name: 'Bob Brown', phone: '444-444-4444', email: 'bob@example.com' },
-  { name: 'Charlie White', phone: '333-333-3333', email: 'charlie@example.com' },
-  // Adicione mais dados conforme necessário  { name: 'John Doe', phone: '123-456-7890', email: 'john@example.com' },
-  { name: 'Jane Smith', phone: '987-654-3210', email: 'jane@example.com' },
-  { name: 'Alice Johnson', phone: '555-555-5555', email: 'alice@example.com' },
-  { name: 'Bob Brown', phone: '444-444-4444', email: 'bob@example.com' },
-  { name: 'Charlie White', phone: '333-333-3333', email: 'charlie@example.com' },
-  // Adicione mais dados conforme necessário  { name: 'John Doe', phone: '123-456-7890', email: 'john@example.com' },
-  { name: 'Jane Smith', phone: '987-654-3210', email: 'jane@example.com' },
-  { name: 'Alice Johnson', phone: '555-555-5555', email: 'alice@example.com' },
-  { name: 'Bob Brown', phone: '444-444-4444', email: 'bob@example.com' },
-  { name: 'Charlie White', phone: '333-333-3333', email: 'charlie@example.com' },
-  // Adicione mais dados conforme necessário  { name: 'John Doe', phone: '123-456-7890', email: 'john@example.com' },
-  { name: 'Jane Smith', phone: '987-654-3210', email: 'jane@example.com' },
-  { name: 'Alice Johnson', phone: '555-555-5555', email: 'alice@example.com' },
-  { name: 'Bob Brown', phone: '444-444-4444', email: 'bob@example.com' },
-  { name: 'Charlie White', phone: '333-333-3333', email: 'charlie@example.com' },
-  // Adicione mais dados conforme necessário  { name: 'John Doe', phone: '123-456-7890', email: 'john@example.com' },
-  { name: 'Jane Smith', phone: '987-654-3210', email: 'jane@example.com' },
-  { name: 'Alice Johnson', phone: '555-555-5555', email: 'alice@example.com' },
-  { name: 'Bob Brown', phone: '444-444-4444', email: 'bob@example.com' },
-  { name: 'Charlie White', phone: '333-333-3333', email: 'charlie@example.com' },
-  // Adicione mais dados conforme necessário  { name: 'John Doe', phone: '123-456-7890', email: 'john@example.com' },
-  { name: 'Jane Smith', phone: '987-654-3210', email: 'jane@example.com' },
-  { name: 'Alice Johnson', phone: '555-555-5555', email: 'alice@example.com' },
-  { name: 'Bob Brown', phone: '444-444-4444', email: 'bob@example.com' },
-  { name: 'Charlie White', phone: '333-333-3333', email: 'charlie@example.com' },
-  // Adicione mais dados conforme necessário  { name: 'John Doe', phone: '123-456-7890', email: 'john@example.com' },
-  { name: 'Jane Smith', phone: '987-654-3210', email: 'jane@example.com' },
-  { name: 'Alice Johnson', phone: '555-555-5555', email: 'alice@example.com' },
-  { name: 'Bob Brown', phone: '444-444-4444', email: 'bob@example.com' },
-  { name: 'Charlie White', phone: '333-333-3333', email: 'charlie@example.com' },
-  // Adicione mais dados conforme necessário
-];
+import { Contact } from '../../models/model';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -80,39 +32,59 @@ const USERS_DATA: UserData[] = [
   styleUrl: './contact.component.css',
 })
 export class ContactComponent implements OnInit {
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog,
+    private service: ContactService,
+  ) {
 
   }
   displayedColumns: string[] = ['name', 'phone', 'email', 'action'];
-  dataSource = new MatTableDataSource(USERS_DATA);
+  dataSource = new MatTableDataSource<Contact>();
+  totalElements = 0;
+  currentPage = 0; 
+  pageSize = 10;
 
-  editModalOpen = false;
-  deleteModalOpen = false;
-  selectedElement: any;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.loadData();
   }
 
-  openEditModal() {
+  loadData(currentPage: number = this.currentPage, pageSize: number = this.pageSize) {
+    this.service.getPaginatedContacts(pageSize, currentPage)
+    .subscribe(response => {
+      this.dataSource.data = response.content;  
+      this.totalElements = response.totalElements;
+    });
+  }
+
+  openEditModal(contact: Contact) {
     this.dialog.open(EditModalComponent, {
       height: '74%',
       width: '45%',
       panelClass: 'custom-modal',
+      data: contact,
     })
   }
 
-  openDeletetModal() {
-    this.dialog.open(DeleteModalComponent)
+  onPageChange(event: any): void {
+    const currentPage = event.pageIndex;
+    const pageSize = event.pageSize;
+    this.loadData(pageSize, currentPage);
   }
 
-  openSchedulerModal() {
+  openDeletetModal(contact: Contact) {
+    this.dialog.open(DeleteModalComponent, {
+      data: contact,
+    })
+  }
+
+  openSchedulerModal(contact: Contact) {
     this.dialog.open(SchedulerModalComponent, {
       height: '74%',
       width: '45%',
       panelClass: 'custom-modal',
+      data: contact,
     })
   }
 

@@ -19,14 +19,14 @@
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>AÇÃO</th>
-        <td mat-cell *matCellDef="let element"  class="action-cell">
-          <button mat-icon-button class="action-button" (click)="openSchedulerModal()">
+        <td mat-cell *matCellDef="let contact"  class="action-cell">
+          <button mat-icon-button class="action-button" (click)="openSchedulerModal(contact)">
             <mat-icon class="action-icon">timer</mat-icon>
           </button>
-          <button mat-icon-button class="action-button" (click)="openEditModal()">
+          <button mat-icon-button class="action-button" (click)="openEditModal(contact)">
             <mat-icon class="action-icon">edit</mat-icon>
           </button>
-          <button mat-icon-button class="action-button" (click)="openDeletetModal()">
+          <button mat-icon-button class="action-button" (click)="openDeletetModal(contact)">
             <mat-icon class="action-icon" >delete</mat-icon>
           </button>
         </td>
@@ -36,6 +36,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     
-    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+    <mat-paginator 
+    [pageSize]="10" 
+    [pageSizeOptions]="[10, 25, 50]" 
+    showFirstLastButtons
+    (page)="onPageChange($event)"
+    ></mat-paginator>
   </div>
 </mat-card>

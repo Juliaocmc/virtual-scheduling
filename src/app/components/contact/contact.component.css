@@ -26,18 +26,13 @@ td {
     text-align: center;
 }
 
-/* Adiciona espaço entre os botões */
 .action-cell {
     justify-content: center;
-    /* Alinha os botões à esquerda */
     gap: 8px;
-    /* Espaçamento horizontal entre os botões */
 }
 
-/* Define os estilos dos botões */
 .action-button {
     background-color: #b5d240;
-    /* Cor de fundo sutil */
     margin: 10px;
     border: #ffffff;
     border-radius: 4px;
@@ -46,15 +41,11 @@ td {
 
 .action-button:hover {
     background-color: #b5d240;
-    /* Cor de fundo ao passar o mouse */
 }
 
-/* Define os estilos dos ícones */
 .action-icon {
     color: #1670a5;
-    /* Define a cor vermelha para os ícones */
     font-size: 24px;
-    /* Tamanho do ícone */
 }
 
 
@@ -63,10 +54,3 @@ mat-paginator {
     color: #1670a5;
 
 }
-
-/*
-#5ebb7c; verde claro
-#1c96a3; azul claro
-#b5d240; amarelo
-#1670a5; azul escuro
-*/

@@ -51,14 +51,12 @@ export class EditModalComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      console.log('Formulário enviado:', this.form.value);
       const body: NewContact = {
         name: this.form.value.fullName,
         email: this.form.value.email,
         document: this.form.value.document,
         phone: this.form.value.phone,
       }
-      console.log("vai editar o ", this.contact.name)
       this.service.updateContact(this.contact.id, body)
         .subscribe({
           next: () => {

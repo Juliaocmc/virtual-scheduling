@@ -1,72 +1,59 @@
-/* Container geral */
 .form-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 20px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    background-color: #ffffff;
-    border-radius: 8px;
-  }
-  
-  .calendar {
-    width: 100%;
-    max-width: 350px;
-    margin-bottom: 20px;
-    background-color: #1671a500;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
 
-  .mat-elevation-z8 {
-    width: 100%;
-  }
-  
-  mat-datepicker-toggle {
-    color: #1c96a3;
-  }
-  
-  /* Estilo da tabela */
-  .mat-table {
-    width: 100%;
-    text-align: center;
-    background-color: #5ebb7c;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
+.calendar {
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+  background-color: #1671a500;
+}
 
-  
-  .table-header {
-    background-color: #5ebb7c;
-    color: #1670a5;
-    color: #1670a5;
-    font-size: larger;
-    font-weight: bolder;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  
-  th {
-    color: #1670a5;
-    font-size: larger;
-    font-weight: bolder;
-    text-align: center;
+.mat-elevation-z8 {
+  width: 100%;
+}
+
+mat-datepicker-toggle {
+  color: #1c96a3;
+}
+
+.mat-table {
+  width: 100%;
+  text-align: center;
+  background-color: #5ebb7c;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-header {
+  background-color: #5ebb7c;
+  color: #1670a5;
+  font-size: larger;
+  font-weight: bolder;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+th {
+  color: #1670a5;
+  font-size: larger;
+  font-weight: bolder;
+  text-align: center;
 }
 
 td {
-    color: #1670a5;
-    font-size: medium;
-    font-weight: bolder;
-    text-align: center;
+  color: #1670a5;
+  font-size: medium;
+  font-weight: bolder;
+  text-align: center;
 }
-
-/*
-#5ebb7c; verdinho
-#1c96a3; azulzinho
-#b5d240; amarelo
-#1670a5; azulzão
-
-*/

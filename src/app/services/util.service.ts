@@ -1,16 +1,13 @@
-import { Injectable } from '@angular/core';
-
-
 export function getTimes(): string[] {
-  const horas: string[] = [];
+  const allTimes: string[] = [];
 
-  for (let hora = 0; hora < 24; hora++) {
-    for (let minuto = 0; minuto < 60; minuto += 30) {
-      const horaFormatada = String(hora).padStart(2, '0');
-      const minutoFormatado = String(minuto).padStart(2, '0');
-      const horario = `${horaFormatada}:${minutoFormatado}`;
-      horas.push(horario);
+  for (let hour = 0; hour < 24; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const formattedHour = String(hour).padStart(2, '0');
+      const formattedMinute = String(minute).padStart(2, '0');
+      const formattedTime = `${formattedHour}:${formattedMinute}`;
+      allTimes.push(formattedTime);
     }
   }
-  return horas;
+  return allTimes;
 }

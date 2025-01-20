@@ -30,7 +30,6 @@ export class DeleteModalComponent {
   }
 
   delete() {
-    console.log("vai deletar o ", this.contact.name)
     this.service.deleteContact(this.contact.id)
       .subscribe({
         next: () => {

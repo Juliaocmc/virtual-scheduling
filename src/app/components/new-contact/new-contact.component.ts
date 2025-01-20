@@ -33,7 +33,7 @@ export class NewContactComponent {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private service: ContactService,  private router: Router) {
+  constructor(private fb: FormBuilder, private service: ContactService, private router: Router) {
     this.form = this.fb.group({
       fullName: ['', [Validators.required, twoWordsValidator()]],
       email: ['', [Validators.required, Validators.email]],
@@ -51,14 +51,14 @@ export class NewContactComponent {
         phone: this.form.value.phone,
       }
       this.service.createContact(body)
-      .subscribe({
-        next: data => {
-          console.log(data.message)
-          alert(`O contato foi salvo com sucesso.`)
-          this.router.navigate(['/contact']);
-        }
-      });
-      
+        .subscribe({
+          next: data => {
+            console.log(data.message)
+            alert(`O contato foi criado com sucesso.`)
+            this.router.navigate(['/contact']);
+          }
+        });
+
     }
   }
 

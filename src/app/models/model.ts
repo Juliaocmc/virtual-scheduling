@@ -13,8 +13,6 @@ export interface Contact {
     email: string;
 }
 
-
-
 export interface PaginatedResponse {
     contacts: Contact[];
     currentPage: number;

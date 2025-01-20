@@ -1,53 +1,49 @@
 <mat-card class="form-card">
-    <mat-card-title>Agendamento para {{contact.name }}</mat-card-title>
-    <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Dia</mat-label>
-          <input 
-          matInput 
-          formControlName="date" 
-          [matDatepicker]="picker"
-          readonly
-          (focus)="picker.open()" 
-          >
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="date?.hasError('required')">Selecione uma data.</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Horário inicial</mat-label>
-          <mat-select name="start" formControlName="start" required>
-            @for (time of times; track time) {
-              <mat-option [value]="time">{{time}}</mat-option>
-            }
-          </mat-select>
-          <mat-error *ngIf="start?.hasError('required')">O horário inicial é obrigatório.</mat-error>
-        </mat-form-field>
-  
-  
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Horário final</mat-label>
-          <mat-select formControlName="end"  name="end">
-            @for (time of times; track time) {
-              <mat-option [value]="time">{{time}}</mat-option>
-            }
-          </mat-select>
-          <mat-error *ngIf="end?.hasError('required')">O horário final é obrigatório.</mat-error>
-          <mat-error *ngIf="end?.hasError('startBeforeEnd')">O horário de início deve ser anterior ao horário final.</mat-error>
-        </mat-form-field>
+  <mat-card-title>Agendamento para {{contact.name }}</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Dia</mat-label>
+        <input matInput formControlName="date" [matDatepicker]="picker" readonly (focus)="picker.open()">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="date?.hasError('required')">Selecione uma data.</mat-error>
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Local</mat-label>
-          <input matInput formControlName="local" placeholder="Digite o local da encontro"
-            required />
-          <mat-error *ngIf="local?.hasError('required')">O local é obrigatório.</mat-error>
-        </mat-form-field>
-  
-        <button mat-raised-button color="primary" type="submit" >
-          Enviar
-        </button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Horário inicial</mat-label>
+        <mat-select name="start" formControlName="start" required>
+          @for (time of times; track time) {
+          <mat-option [value]="time">{{time}}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="start?.hasError('required')">O horário inicial é obrigatório.</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Horário final</mat-label>
+        <mat-select formControlName="end" name="end">
+          @for (time of times; track time) {
+          <mat-option [value]="time">{{time}}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="end?.hasError('required')">O horário final é obrigatório.</mat-error>
+        <mat-error *ngIf="end?.hasError('startBeforeEnd')">O horário de início deve ser anterior ao horário
+          final.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Local</mat-label>
+        <input matInput formControlName="local" placeholder="Digite o local da encontro" required />
+        <mat-error *ngIf="local?.hasError('required')">O local é obrigatório.</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">
+        Enviar
+      </button>
+
+    </form>
+  </mat-card-content>
+</mat-card>

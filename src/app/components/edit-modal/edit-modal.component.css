@@ -3,7 +3,7 @@
   height: 100%;
   background-color: #5ebb7c;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 mat-card-title {
@@ -35,7 +35,7 @@ input {
 
 
 mat-error {
-  color: #1670a5; 
+  color: #1670a5;
   font-size: 0.8rem;
   font-weight: bold;
 }
@@ -54,15 +54,15 @@ button {
 }
 
 button:hover {
-background-color: #1c96a3;
-color: #1670a5;
+  background-color: #1c96a3;
+  color: #1670a5;
 }
 
 
 ::ng-deep .custom-modal {
-  background-color: #ffffff; /* Cor de fundo */
-  color: #000;              /* Cor do texto */
-  border-radius: 10px;      /* Bordas arredondadas */
-  padding: 20px;            /* Espaçamento interno */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }

@@ -41,7 +41,7 @@ export class ContactComponent implements OnInit {
   displayedColumns: string[] = ['name', 'phone', 'email', 'action'];
   dataSource = new MatTableDataSource<Contact>();
   totalElements = 0;
-  currentPage = 10; 
+  currentPage = 10;
   pageSize = 0;
   totalPage = 0;
 
@@ -53,13 +53,13 @@ export class ContactComponent implements OnInit {
 
   loadData(currentPage: number = this.currentPage, pageSize: number = this.pageSize) {
     this.service.getPaginatedContacts(pageSize, currentPage)
-    .subscribe(response => {
-      this.dataSource.data = response.contacts;  
-      this.totalElements = response.totalElements;
-      this.currentPage = response.totalElements;
-      this.pageSize = response.totalElements;
-      this.totalPage = response.totalElements;
-    });
+      .subscribe(response => {
+        this.dataSource.data = response.contacts;
+        this.totalElements = response.totalElements;
+        this.currentPage = response.totalElements;
+        this.pageSize = response.totalElements;
+        this.totalPage = response.totalElements;
+      });
   }
 
   openEditModal(contact: Contact) {

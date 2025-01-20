@@ -70,8 +70,6 @@ export class HomeComponent {
     })
   }
 
-
-
   get date() {
     return this.form.get('date');
   }

@@ -8,11 +8,13 @@ import { map, Observable } from 'rxjs';
 })
 export class ContactService {
 
+  baseUrl = 'http://localhost:8080'
+
   constructor(private http: HttpClient,) { }
 
   createContact(body: NewContact): Observable<any> {
     return this.http.post<NewContact>(
-      `https://516c9b31-2604-42fc-b567-63c5a40e439f.mock.pstmn.io/contact`,
+      `${this.baseUrl}/contact`,
       body
     )
     .pipe(map(data => data))
@@ -20,14 +22,14 @@ export class ContactService {
 
   deleteContact(contactId: string) {
     return this.http.delete(
-      `rota/${contactId}`
+      `${this.baseUrl}/contact/${contactId}`,
     )
     .pipe(map(data => data))
   }
 
-  updateContact(contactId: string, body: any) {
+  updateContact(contactId: string, body: NewContact) {
     return this.http.put(
-      `rota/${contactId}`,
+      `${this.baseUrl}/contact/${contactId}`,
       body
     )
     .pipe(map(data => data))
@@ -38,7 +40,7 @@ export class ContactService {
     .set('page', page.toString())
     .set('size', size.toString());
     return this.http.get<PaginatedResponse>(
-      `https://3d62f73b-8c39-4f7d-ba2a-6d7f664eaec0.mock.pstmn.io/`,
+      `${this.baseUrl}/contact`,
       { params }
     );
   }

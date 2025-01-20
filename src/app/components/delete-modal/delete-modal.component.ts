@@ -23,7 +23,7 @@ export class DeleteModalComponent {
     private service: ContactService,
     public dialogRef: MatDialogRef<DeleteModalComponent>,
     @Inject(MAT_DIALOG_DATA) public contact: Contact
-  ) {}
+  ) { }
 
   closeDialog(): void {
     this.dialogRef.close();
@@ -32,13 +32,16 @@ export class DeleteModalComponent {
   delete() {
     console.log("vai deletar o ", this.contact.name)
     this.service.deleteContact(this.contact.id)
-    .subscribe({
-      next: () =>
-      alert(`O contato foi deletado com sucesso.`)
-    })
+      .subscribe({
+        next: () => {
+          alert(`O contato foi deletado com sucesso.`)
+          this.dialogRef.close();
+          window.location.reload();
+        }
+      })
   }
 
-  toggle () {
+  toggle() {
     this.mostrar = !this.mostrar;
   }
 }

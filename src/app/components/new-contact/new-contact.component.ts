@@ -8,6 +8,7 @@ import { documentValidator, phoneValidator, twoWordsValidator } from '../../serv
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { ContactService } from '../../services/contact.service';
+import { NewContact } from '../../models/model';
 
 @Component({
   selector: 'app-new-contact',
@@ -43,12 +44,17 @@ export class NewContactComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      const body = this.form.value
+      const body: NewContact = {
+        name: this.form.value.fullName,
+        email: this.form.value.email,
+        document: this.form.value.document,
+        phone: this.form.value.phone,
+      }
       this.service.createContact(body)
       .subscribe({
         next: data => {
           console.log(data.message)
-          alert(`O contato ${body.name} foi salvo com sucesso.`)
+          alert(`O contato foi salvo com sucesso.`)
           this.router.navigate(['/contact']);
         }
       });

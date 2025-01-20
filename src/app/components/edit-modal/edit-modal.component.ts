@@ -6,9 +6,10 @@ import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { documentValidator, phoneValidator, twoWordsValidator } from '../../services/validators.service';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Contact } from '../../models/model';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Contact, NewContact } from '../../models/model';
 import { ContactService } from '../../services/contact.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-modal',
@@ -36,7 +37,9 @@ export class EditModalComponent {
   constructor(
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public contact: Contact,
-    private service: ContactService
+    private service: ContactService,
+    public dialogRef: MatDialogRef<EditModalComponent>,
+    private router: Router
   ) {
     this.form = this.fb.group({
       fullName: [this.contact.name, [Validators.required, twoWordsValidator()]],
@@ -46,18 +49,29 @@ export class EditModalComponent {
     });
   }
 
-  onSubmit(): void {
+  onSubmit() {
     if (this.form.valid) {
       console.log('Formulário enviado:', this.form.value);
-      const body = this.form.value
+      const body: NewContact = {
+        name: this.form.value.fullName,
+        email: this.form.value.email,
+        document: this.form.value.document,
+        phone: this.form.value.phone,
+      }
       console.log("vai editar o ", this.contact.name)
       this.service.updateContact(this.contact.id, body)
-      .subscribe({
-        next: () =>
-        alert(`O contato foi atualizado com sucesso.`)
-      })
-
+        .subscribe({
+          next: () => {
+            alert(`O contato foi atualizado com sucesso.`)
+            this.dialogRef.close();
+            window.location.reload();
+          }
+        });
+    } else {
+      alert(`Existem erros em seu formulário.`)
     }
+
+
   }
 
   get fullName() {

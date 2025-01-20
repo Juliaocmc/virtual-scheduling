@@ -16,9 +16,9 @@ export interface Contact {
 
 
 export interface PaginatedResponse {
-    content: Contact[];
-    page: number;
-    size: number;
+    contacts: Contact[];
+    currentPage: number;
+    currentSize: number;
     totalElements: number;
     totalPages: number;
 }

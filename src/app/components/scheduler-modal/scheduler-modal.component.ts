@@ -75,12 +75,18 @@ export class SchedulerModalComponent {
       const formattedDate = this.datePipe.transform(this.form.value.date, 'yyyy-MM-dd');
       const body: CreateSchedulerForm = {
         contactId: this.contact.id,
-        date: this.form.value.date,
-        startHour: this.form.value.start, 
+        date: formattedDate!,
+        startHour: this.form.value.start,
         endHour: this.form.value.end,
         local: this.form.value.local,
       }
       this.service.createScheduler(body)
+        .subscribe({
+          next: () => {
+            alert(`O contato foi salvo com sucesso.`)
+            window.location.reload();
+          }
+        })
     }
 
   }

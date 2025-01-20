@@ -46,8 +46,8 @@ export class ContactService {
   }
 
   createScheduler(body: CreateSchedulerForm) {
-    return this.http.put(
-      `rota/`,
+    return this.http.post(
+      `${this.baseUrl}/scheduler`,
       body
     )
     .pipe(map(data => data))
@@ -57,7 +57,7 @@ export class ContactService {
     const params = new HttpParams()
     .set('date', date)
     return this.http.get<SchedulerDataResponse>(
-      `https://8a5a0147-a05d-4542-896d-e2dd652b4828.mock.pstmn.io/schedulers`,
+      `${this.baseUrl}/scheduler`,
       { params }
     );
   }
